@@ -11,7 +11,6 @@
 
 def caching_fibonacci():
     cache = {}
-
     def fibonacci(n):
         if n <= 0:
             return 0
@@ -25,5 +24,7 @@ def caching_fibonacci():
 
 fib = caching_fibonacci()
 
-print(fib(10))
-print(fib(150))
+print(fib(1))
+print(fib(4))
+print(fib(9))
+print(fib(16))
