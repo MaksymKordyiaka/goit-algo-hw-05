@@ -10,19 +10,29 @@
 '''
 
 def caching_fibonacci():
+    # Створюємо пустий словник для кешування результатів обчислень
     cache = {}
+
     def fibonacci(n):
+        # Базові випадки: fib(0) = 0, fib(1) = 1
         if n <= 0:
             return 0
         elif n == 1:
             return 1
+        # Перевіряємо, чи є результат для n в кеші
         elif n in cache:
             return cache[n]
+        # Якщо немає результату в кеші, обчислюємо його та зберігаємо в кеші
         cache[n] = fibonacci(n - 1) + fibonacci(n - 2)
         return cache[n]
+
+    # Повертаємо внутрішню функцію fibonacci, яка має доступ до кешу
     return fibonacci
+
+# Створюємо функцію для обчислення чисел Фібоначчі з кешуванням
 fib = caching_fibonacci()
 
+# Друкуємо результати обчислення чисел Фібоначчі
 print(fib(1))
 print(fib(4))
 print(fib(9))
