@@ -3,12 +3,12 @@ import re
 
 def parse_log_line(line: str) -> dict:
     # Розбиваємо рядок логу на компоненти за допомогою регулярного виразу
-    match = re.match(r'^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) (\w+) (.*)$', line)
+    match = re.match(r'^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) (\w+) (.*)$', line)
     if match:
         # Розпаковуємо результати регулярного виразу
-        timestamp, level, message = match.groups()
+        date, time, level, message = match.groups()
         # Повертаємо словник з розібраними компонентами логу
-        return {'timestamp': timestamp, 'level': level, 'message': message}
+        return {'date': date, 'time': time, 'level': level, 'message': message}
     # Якщо рядок логу не відповідає формату, повертаємо None
     return None
 
@@ -54,13 +54,13 @@ def display_log_details(logs: list, level: str):
     filtered_logs = filter_logs_by_level(logs, level)
     print(f"\nДеталі логів для рівня '{level}':")
     for log in filtered_logs:
-        print(f"{log['timestamp']} - {log['message']}")
+        print(f"{log['date']} {log['time']} - {log['message']}")
 
 def main():
     # Перевіряємо, чи вказано шлях до файлу логу
     if len(sys.argv) < 2:
         print("Usage: python task3.py <log_file> [log_level]")
-        sys.exit(1)
+        return
 
     # Отримуємо шлях до файлу логу з аргументів командного рядка
     log_file = sys.argv[1]

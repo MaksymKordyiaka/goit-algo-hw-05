@@ -22,8 +22,11 @@ def input_error(func):
 @input_error
 def add_contact(args, contacts):
     name, phone = args
-    contacts[name] = phone
-    return "Contact added."
+    if name in contacts:
+        return f"Contact {name} already exists."
+    else:
+        contacts[name] = phone
+        return "Contact added."
 
 @input_error
 def change_phone(args, contacts):

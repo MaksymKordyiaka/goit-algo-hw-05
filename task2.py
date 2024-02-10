@@ -11,7 +11,7 @@ from typing import Callable
 
 def generator_numbers(text: str):
     # Знаходимо всі числа з плаваючою точкою у тексті
-    numbers = re.findall(r'\b\d+\.\d+\b', text)
+    numbers = re.findall(r'(?<=\s)\d+\.\d+(?=\s)', text)
     # Проходимося по знайденим числам і повертаємо їх як float
     for number_str in numbers:
         yield float(number_str)
